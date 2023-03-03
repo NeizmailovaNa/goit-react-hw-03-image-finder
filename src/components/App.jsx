@@ -64,8 +64,8 @@ export class App extends React.Component {
   };
 
   render() {
-    const totalPage =
-      this.state.imgsToDisplay.length / (this.state.page * this.state.total);
+    // const totalPage =
+    //   this.state.imgsToDisplay.length / (this.state.page * this.state.total);
     return (
       <div className={css.AppWrap}>
         <Searchbar onSubmitHendler={this.onSubmitHendler}></Searchbar>
@@ -85,10 +85,15 @@ export class App extends React.Component {
         {this.state.status === 'rejected' && (
           <Oops imgSearchName={this.state.imgSearchName}></Oops>
         )}
-        {totalPage < 1 && this.state.status === 'resolved' && (
+
+        {this.state.imgsToDisplay.length >= 1  && this.state.imgsToDisplay.length < this.state.total &&
+           <Button onLoadMoreHendler={this.onLoadMoreHendler}></Button>
+        }
+        {/* {this.onFetchHendler.totalHits < 1  && this.state.status === 'resolved' && (
           <Button onLoadMoreHendler={this.onLoadMoreHendler}></Button>
-        )}
+        )} */}
       </div>
     );
   }
 }
+console.log()
